@@ -1,0 +1,148 @@
+
+:root {
+    --bg: radial-gradient(1200px 800px at 20% 10%, #3b82f6 0%, #9333ea 35%, #0ea5e9 70%, #0b1020 100%);
+    --card: rgba(255,255,255,0.12);
+    --card-strong: rgba(255,255,255,0.18);
+    --text: #f8fafc;
+    --muted: #cbd5e1;
+    --accent: #22d3ee;
+    --shadow: 0 10px 30px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.06);
+    --radius-xl: 24px;
+  }
+  
+  * { box-sizing: border-box }
+  html, body { height: 100% }
+  body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    color: var(--text);
+    background: #0b1020;
+    background-image: var(--bg);
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Header */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
+  }
+  .title { display: flex; align-items: center; gap: 12px }
+  .logo {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #22d3ee, #a78bfa);
+    box-shadow: var(--shadow);
+    display: grid;
+    place-items: center;
+  }
+  .logo span { font-weight: 800; color: #0b1020 }
+  h1 { margin: 0; font-size: clamp(22px, 2.3vw, 32px); letter-spacing: .3px }
+  
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
+  .panel { padding: 12px 14px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow) }
+  .field { display: flex; align-items: center; gap: 8px }
+  label { font-size: 13px; color: var(--muted) }
+  select, input[type="number"] {
+    border: none; outline: none;
+    color: var(--text);
+    background: var(--card-strong);
+    border-radius: 12px;
+    padding: 10px 12px;
+    min-width: 84px;
+    box-shadow: var(--shadow);
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  /* Main board */
+  main { flex: 1; padding: 8px 16px 28px; display: grid; gap: 16px; grid-template-columns: 1fr }
+  .board {
+    display: grid;
+    gap: 16px;
+    align-items: start;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .player {
+    padding: 16px;
+    border-radius: var(--radius-xl);
+    background: var(--card);
+    box-shadow: var(--shadow);
+    transition: transform .2s ease;
+  }
+  .player:hover { transform: translateY(-2px) }
+  .player.active { outline: 2px solid var(--accent); background: rgba(34,211,238,.18) }
+  .player.winner { outline: 2px solid #34d399; background: rgba(16,185,129,.18) }
+  
+  .badge {
+    font-size: 12px; color: #0b1020;
+    background: linear-gradient(90deg, #34d399, #22d3ee);
+    padding: 6px 10px; border-radius: 999px; font-weight: 800;
+  }
+  .name { font-weight: 800; font-size: 18px }
+  .scores { display: flex; gap: 12px; align-items: center; margin-top: 10px; flex-wrap: wrap }
+  .pill {
+    padding: 8px 12px; background: var(--card-strong);
+    border-radius: 12px; box-shadow: var(--shadow); font-weight: 700;
+  }
+  .label { font-size: 12px; color: var(--muted); font-weight: 600 }
+  
+  /* Dice area */
+  .center {
+    display: grid; place-items: center; gap: 18px;
+    padding: 10px; min-height: 300px;
+    border-radius: var(--radius-xl);
+    background: var(--card); box-shadow: var(--shadow);
+  }
+  .dice { width: 120px; height: 120px; perspective: 600px }
+  .cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 1s cubic-bezier(.2,.8,.2,1) }
+  .face {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #ffffff, #e5e7eb);
+    border-radius: 18px; border: 6px solid #e2e8f0;
+    display: grid; place-items: center;
+  }
+  .pip { width: 18px; height: 18px; background: #0b1020; border-radius: 50% }
+  .grid { width: 84%; height: 84%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px }
+  .g { display: grid; place-items: center }
+  .f1 { transform: translateZ(60px) }
+  .f2 { transform: rotateY(90deg) translateZ(60px) }
+  .f3 { transform: rotateY(180deg) translateZ(60px) }
+  .f4 { transform: rotateY(-90deg) translateZ(60px) }
+  .f5 { transform: rotateX(90deg) translateZ(60px) }
+  .f6 { transform: rotateX(-90deg) translateZ(60px) }
+  
+  /* Buttons */
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center }
+  .btn {
+    border: none; outline: none; cursor: pointer;
+    padding: 12px 16px; border-radius: 14px; font-weight: 800;
+    background: linear-gradient(90deg, #22d3ee, #a78bfa); color: #0b1020;
+    box-shadow: var(--shadow);
+  }
+  .btn.secondary { background: linear-gradient(90deg, #e2e8f0, #cbd5e1) }
+  .btn.danger { background: linear-gradient(90deg, #fb7185, #f43f5e) }
+  .btn[disabled] { opacity: .6; cursor: not-allowed }
+  
+  /* Log & Footer */
+  .log { width: 100%; max-width: 900px; padding: 14px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); font-size: 14px; color: var(--muted) }
+  footer { text-align: center; padding: 8px 12px 24px; color: var(--muted); font-size: 13px }
+  
+  /* Confetti */
+  .confetti { position: fixed; top: 0; left: 0; width: 100%; height: 0; pointer-events: none }
+  @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: .95 } }
+  
+  @media (min-width: 960px) {
+    main { grid-template-columns: 1.2fr 1fr }
+    .center { min-height: 420px }
+  }
+  
