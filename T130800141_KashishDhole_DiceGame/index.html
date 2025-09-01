@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dice Dash — 3–4 Player Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="title" aria-live="polite" aria-atomic="true">
+      <div class="logo" aria-hidden="true"><span>🎲</span></div>
+      <h1>Dice Dash — 3–4 Player</h1>
+    </div>
+    <div class="controls">
+      <div class="panel field">
+        <label for="players">Players</label>
+        <select id="players" aria-label="Select number of players">
+          <option value="3" selected>3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <div class="panel field">
+        <label for="target">Target</label>
+        <input id="target" type="number" inputmode="numeric" min="20" max="300" step="5" value="100" aria-label="Target score" />
+      </div>
+      <div class="panel field">
+        <button id="newGame" class="btn secondary" title="Start a new game (N)">New Game</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="board" id="board" aria-label="Scoreboard"></section>
+
+    <section class="center" aria-label="Game actions and dice">
+      <div class="dice" aria-hidden="true">
+        <div class="cube" id="cube">
+          <div class="face f1"><div class="grid"><div></div><div></div><div></div><div></div><div class="g"><div class="pip"></div></div><div></div><div></div><div></div><div></div></div></div>
+          <div class="face f2"><div class="grid"><div class="g"><div class="pip"></div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div class="g"><div class="pip"></div></div></div></div>
+          <div class="face f3"><div class="grid"><div class="g"><div class="pip"></div></div><div></div><div></div><div></div><div class="g"><div class="pip"></div></div><div></div><div></div><div></div><div class="g"><div class="pip"></div></div></div></div>
+          <div class="face f4"><div class="grid"><div class="g"><div class="pip"></div></div><div></div><div class="g"><div class="pip"></div></div><div></div><div></div><div></div><div class="g"><div class="pip"></div></div><div></div><div class="g"><div class="pip"></div></div></div></div>
+          <div class="face f5"><div class="grid"><div class="g"><div class="pip"></div></div><div></div><div class="g"><div class="pip"></div></div><div></div><div class="g"><div class="pip"></div></div><div></div><div class="g"><div class="pip"></div></div><div></div><div class="g"><div class="pip"></div></div></div></div>
+          <div class="face f6"><div class="grid"><div class="g"><div class="pip"></div></div><div></div><div class="g"><div class="pip"></div></div><div class="g"><div class="pip"></div></div><div></div><div class="g"><div class="pip"></div></div><div class="g"><div class="pip"></div></div><div></div><div class="g"><div class="pip"></div></div></div></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="roll" class="btn" title="Roll the dice (Space)">Roll</button>
+        <button id="hold" class="btn" title="Hold and bank points (H)">Hold</button>
+        <button id="resetTurn" class="btn danger" title="Reset current turn">Reset Turn</button>
+      </div>
+
+      <div class="log" id="log" role="status" aria-live="polite">
+        Welcome! Choose players and target, then press Roll.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Controls: <strong>Space</strong> to Roll, <strong>H</strong> to Hold, <strong>N</strong> for New Game. Rolling a <strong>1</strong> loses current turn points.
+  </footer>
+
+  <svg class="confetti" id="confetti" width="100%" height="0" viewBox="0 0 100 0" preserveAspectRatio="none" aria-hidden="true"></svg>
+
+  <script src="script.js"></script>
+</body>
+</html>
